@@ -38,7 +38,7 @@ public class UtilsTest {
   @Test
   public void should_return_one_option_when_user_not_login() throws Exception {
     utils.showMenu(loginManager);
-    assertEquals("1. List Books\nl. Login\n", outContent.toString());
+    assertEquals("1. List Books\nl. Login\ne. exit\n", outContent.toString());
   }
 
   @Test
@@ -46,7 +46,7 @@ public class UtilsTest {
     User user = new User("001", "001", "test1", "test1@twu.com", "13000000000");
     loginManager.login(user);
     utils.showMenu(loginManager);
-    assertEquals("1. List Books\n2. Checkout Book\n3. Return Book\no. Logout\n", outContent.toString());
+    assertEquals("1. List Books\n2. Checkout Book\n3. Return Book\no. Logout\ne. exit\n", outContent.toString());
   }
 
 }

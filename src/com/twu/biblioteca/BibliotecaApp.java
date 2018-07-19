@@ -1,26 +1,67 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Scanner;
 
 public class BibliotecaApp {
-  static List<Book> books = new ArrayList<Book>();
+  static Utils utils = new Utils();
+  static LoginManager loginManager = new LoginManager();
+  static Scanner reader = new Scanner(System.in);
 
   public static void main(String[] args) {
+    utils.intiBooks();
     System.out.println("Hello, Welcome to The Bangalore Public Library!");
     System.out.println("-----------------------------------------------");
-    System.out.println("Here are the book lists:");
-    books.add(new Book("001", "Programming Pearls", "Jon L. Bentley,  Patrick Chan ", "1986", 5));
-    books.add(new Book("002", "Programming in Scala ", "Martin Odersky", "2008", 5));
-    books.add(new Book("003", "The Recovery", "Suzanne Young", "2015", 5));
-    books.add(new Book("004", "Programming Python", "Mark Lutz", "1996", 5));
-    books.add(new Book("005", "The Psychology of Computer Programming", "Gerald M. Weinberg", "1971", 5));
-    Iterator bookIt = books.iterator();
-    while (bookIt.hasNext()) {
-      Book book = (Book) bookIt.next();
-      System.out.println(String.format("| %-5s | %-20s |", book.getId(), book.getName()));
+    System.out.println("Enter your option: ");
+    utils.showMenu(loginManager);
+    char option;
+    while ((option = reader.next().charAt(0)) != 'e') {
+      switch (option) {
+        case '1':
+          utils.listBooks();
+          utils.showMenu(loginManager);
+          break;
+        case '2':
+          if (loginManager.isLogged()) {
+
+          } else {
+            System.out.println("Select a valid option!");
+          }
+          break;
+        case '3':
+          if (loginManager.isLogged()) {
+
+          } else {
+            System.out.println("Select a valid option!");
+          }
+          break;
+        case 'l':
+          System.out.println("Please enter your information as the format below:");
+          System.out.println("id,password,name,email,telephone");
+          String userInfo = reader.next();
+          String infoArr[] = userInfo.split(",");
+          User user = new User(infoArr[0], infoArr[1], infoArr[2], infoArr[3], infoArr[4]);
+          loginManager.login(user);
+          if (loginManager.isLogged()) {
+            System.out.println("login success...");
+          }
+          utils.showMenu(loginManager);
+          break;
+        case 'o':
+          if (loginManager.isLogged()) {
+            loginManager.logout();
+            System.out.println("logout success...");
+          } else {
+            System.out.println("Select a valid option!");
+          }
+          utils.showMenu(loginManager);
+          break;
+        default:
+          System.out.println("Select a valid option!");
+          utils.showMenu(loginManager);
+          break;
+      }
     }
+
     System.out.println("-----------------------------------------------");
   }
 }
