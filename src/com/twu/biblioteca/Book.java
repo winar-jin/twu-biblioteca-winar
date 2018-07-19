@@ -16,6 +16,10 @@ public class Book {
     this.yearOfPublish = yearOfPublish;
   }
 
+  public String getId() {
+    return id;
+  }
+
   public String getName() {
     return name;
   }
@@ -29,6 +33,6 @@ public class Book {
   }
 
   public String getBookDetail() {
-    return String.format("%-20s | %-10s | %-5s", getName(), getAuthor(), getYearOfPublish());
+    return String.format("%-5s | %-30s | %-20s | %-5s",getId(), getName(), getAuthor(), getYearOfPublish());
   }
 }
