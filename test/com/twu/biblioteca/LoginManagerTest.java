@@ -13,7 +13,7 @@ public class LoginManagerTest {
   static LoginManager loginManager;
 
   @BeforeClass
-  public static void beforClass() {
+  public static void beforeClass() {
     loginManager = new LoginManager();
   }
 
