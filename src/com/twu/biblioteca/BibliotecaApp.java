@@ -9,6 +9,7 @@ public class BibliotecaApp {
 
   public static void main(String[] args) {
     utils.intiBooks();
+    utils.initMovies();
     System.out.println("Hello, Welcome to The Bangalore Public Library!");
     System.out.println("-----------------------------------------------");
     utils.showMenu(loginManager);
@@ -17,11 +18,15 @@ public class BibliotecaApp {
     char option;
     while ((option = reader.next().charAt(0)) != 'e') {
       switch (option) {
-        case '1':
+        case 'b':
           utils.listBooks();
           utils.showMenu(loginManager);
           break;
-        case '2':
+        case 'm':
+          utils.listMovies();
+          utils.showMenu(loginManager);
+          break;
+        case 'c':
           if (!loginManager.isLogged()) {
             System.out.println("Select a valid option!");
             utils.showMenu(loginManager);
@@ -43,7 +48,7 @@ public class BibliotecaApp {
           }
           utils.showMenu(loginManager);
           break;
-        case '3':
+        case 'r':
           if (!loginManager.isLogged()) {
             System.out.println("Select a valid option!");
             utils.showMenu(loginManager);
