@@ -28,14 +28,14 @@ public class BibliotecaApp {
             break;
           }
           utils.listBooks();
-          System.out.println("Please enter the number book that you want to checkout");
-          String bookNo = reader.next();
-          String bookInfo = utils.getBookInfo(bookNo);
+          System.out.println("Please enter the number of book that you want to checkout");
+          String bookNoToCheckout = reader.next();
+          String bookInfo = utils.getBookInfo(bookNoToCheckout);
           System.out.println(bookInfo);
           if (!bookInfo.equals("That book is not available.")) {
             System.out.println("Are you sure the book is what you want? (Y/N)");
             String confirm = reader.next();
-            if (confirm.equals("Y") && utils.checkoutBook(bookNo)) {
+            if (confirm.equals("Y") && utils.checkoutBook(bookNoToCheckout)) {
               System.out.println("Thank you! Enjoy the book");
             } else {
               System.out.println("Checkout cancel...");
@@ -44,10 +44,23 @@ public class BibliotecaApp {
           utils.showMenu(loginManager);
           break;
         case '3':
-          if (loginManager.isLogged()) {
-
-          } else {
+          if (!loginManager.isLogged()) {
             System.out.println("Select a valid option!");
+            utils.showMenu(loginManager);
+            break;
+          }
+          System.out.println("Please enter the number of book that you want to return");
+          String bookNoToReturn = reader.next();
+          String bookInfoToReturn = utils.getBookInfo(bookNoToReturn);
+          System.out.println(bookInfoToReturn);
+          if (!bookInfoToReturn.equals("That book is not available.")) {
+            System.out.println("Are you sure the book is what you want to return? (Y/N)");
+            String confirm = reader.next();
+            if (confirm.equals("Y") && utils.returnBook(bookNoToReturn)) {
+              System.out.println("Thank you for returning the book.");
+            } else {
+              System.out.println("That is not a valid book to return...");
+            }
           }
           utils.showMenu(loginManager);
           break;
