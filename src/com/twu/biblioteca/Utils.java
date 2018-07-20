@@ -39,5 +39,38 @@ public class Utils {
     }
   }
 
+  public Book getBook(String bookNo) {
+    for (Book book : books) {
+      if (book.getId().equals(bookNo)) {
+        return book;
+      }
+    }
+    return null;
+  }
 
+  public String getBookInfo(String bookNo) {
+    Book book = getBook(bookNo);
+    if (book != null) {
+      return book.getBookDetail();
+    }
+    return "That book is not available.";
+  }
+
+  public boolean checkoutBook(String bookNo) {
+    Book book = getBook(bookNo);
+    if (book != null && book.getRemain() > 0) {
+      book.checkOutBook();
+      return true;
+    }
+    return false;
+  }
+
+  public boolean returnBook(String bookNo) {
+    Book book = getBook(bookNo);
+    if (book != null) {
+      book.returnBook();
+      return true;
+    }
+    return false;
+  }
 }

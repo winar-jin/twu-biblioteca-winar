@@ -11,8 +11,9 @@ public class BibliotecaApp {
     utils.intiBooks();
     System.out.println("Hello, Welcome to The Bangalore Public Library!");
     System.out.println("-----------------------------------------------");
-    System.out.println("Enter your option: ");
     utils.showMenu(loginManager);
+    System.out.println("················································");
+    System.out.println("Enter your option: ");
     char option;
     while ((option = reader.next().charAt(0)) != 'e') {
       switch (option) {
@@ -21,11 +22,26 @@ public class BibliotecaApp {
           utils.showMenu(loginManager);
           break;
         case '2':
-          if (loginManager.isLogged()) {
-
-          } else {
+          if (!loginManager.isLogged()) {
             System.out.println("Select a valid option!");
+            utils.showMenu(loginManager);
+            break;
           }
+          utils.listBooks();
+          System.out.println("Please enter the number book that you want to checkout");
+          String bookNo = reader.next();
+          String bookInfo = utils.getBookInfo(bookNo);
+          System.out.println(bookInfo);
+          if (!bookInfo.equals("That book is not available.")) {
+            System.out.println("Are you sure the book is what you want? (Y/N)");
+            String confirm = reader.next();
+            if (confirm.equals("Y") && utils.checkoutBook(bookNo)) {
+              System.out.println("Thank you! Enjoy the book");
+            } else {
+              System.out.println("Checkout cancel...");
+            }
+          }
+          utils.showMenu(loginManager);
           break;
         case '3':
           if (loginManager.isLogged()) {
@@ -33,6 +49,7 @@ public class BibliotecaApp {
           } else {
             System.out.println("Select a valid option!");
           }
+          utils.showMenu(loginManager);
           break;
         case 'l':
           System.out.println("Please enter your information as the format below:");
@@ -60,6 +77,8 @@ public class BibliotecaApp {
           utils.showMenu(loginManager);
           break;
       }
+      System.out.println("················································");
+      System.out.println("Enter your option: ");
     }
 
     System.out.println("-----------------------------------------------");
