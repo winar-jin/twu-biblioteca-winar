@@ -26,6 +26,15 @@ public class BibliotecaApp {
           utils.listMovies();
           utils.showMenu(loginManager);
           break;
+        case 'i':
+          if (!loginManager.isLogged()) {
+            System.out.println("Select a valid option!");
+            utils.showMenu(loginManager);
+            break;
+          }
+          System.out.println(loginManager.getLoginedUserInfo());
+          utils.showMenu(loginManager);
+          break;
         case 'c':
           if (!loginManager.isLogged()) {
             System.out.println("Select a valid option!");

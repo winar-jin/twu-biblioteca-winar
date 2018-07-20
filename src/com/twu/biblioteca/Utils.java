@@ -35,6 +35,7 @@ public class Utils {
     } else {
       System.out.println("c. Checkout Book");
       System.out.println("r. Return Book");
+      System.out.println("i. Show profile");
       System.out.println("o. Logout");
     }
     System.out.println("e. exit");
